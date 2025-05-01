@@ -2,6 +2,7 @@ package com.jpatutorial.Spring_Data_Jpa_Tutorial.repository;
 
 import com.jpatutorial.Spring_Data_Jpa_Tutorial.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,4 +13,8 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
      List<Student> findByFirstNameContaining(String name);
      List<Student> findByLastNameNotNull();
      List<Student> findByGuardianName(String guardianName);
+
+
+     @Query("select s from Student s where s.emailId = ?1")
+     Student getStudentByEmailAddress(String emailId);
 }
